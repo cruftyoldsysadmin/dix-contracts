@@ -2,13 +2,13 @@ pragma solidity ^0.4.18;
 
 import "ds-test/test.sol";
 
-import "./DixContracts.sol";
+import "./DixProject.sol";
 
-contract DixContractsTest is DSTest {
-    DixContracts contracts;
+contract DixProjectTest is DSTest {
+    DixProject project;
 
     function setUp() public {
-        contracts = new DixContracts();
+        project = new DixProject();
     }
 
     function testFail_basic_sanity() public {
