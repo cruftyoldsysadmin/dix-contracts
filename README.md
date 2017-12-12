@@ -6,6 +6,7 @@ Install dapp tools by following the instructions on (https://dapp.tools/)
 
 Remember to export the dapp testnet variables
 ```
+export ETH_GAS=40000000
 export ETH_RPC_PORT=2000
 export ETH_FROM=$(cat ~/.dapp/testnet/2000/config/account)
 ```
@@ -24,6 +25,11 @@ Run the dapp testnet (https://medium.com/dapphub/easy-local-testnets-for-your-da
 ```
 dapp testnet
 ```
+Make sure that it starts on port 2000 if not then remove the testnet folder for port 2000
+```
+rm -rf /Users/cedricfranz/.dapp/testnet/2000
+```
+
 
 Run the tests
 

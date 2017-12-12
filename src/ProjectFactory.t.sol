@@ -11,8 +11,8 @@ contract ProjectFactoryTest is DSTest {
     DSToken token;
 
     function setUp() public {
-        projectFactory = new ProjectFactory();
         token = new DSToken("TST");
+        projectFactory = new ProjectFactory(token);
     }
 
     function testFail_basic_sanity() public {
@@ -24,7 +24,6 @@ contract ProjectFactoryTest is DSTest {
     }
 
     function test_newProject() public {
-        projectFactory.swap(token);
         Project project = projectFactory.newProject();
         assertTrue(projectFactory.isProject(project));
         assertEq(token, project.token());
