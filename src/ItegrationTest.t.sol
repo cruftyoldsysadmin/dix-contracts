@@ -2,22 +2,22 @@ pragma solidity ^0.4.18;
 
 import "ds-test/test.sol";
 
-import "ds-multisig/group.sol";
+import "./ValidatorGroup.sol";
 import "ds-token/token.sol";
 import "./ProjectFactory.sol";
 
 contract Validator {
 
-    function propose(DSGroup group, address target, bytes calldata, uint value) returns (uint id) {
+    function propose(ValidatorGroup group, address target, bytes calldata, uint value) returns (uint id) {
         return group.propose(target, calldata, value);
     }
 
 
-    function confirm(DSGroup group, uint id) {
+    function confirm(ValidatorGroup group, uint id) {
         group.confirm(id);
     }
 
-    function trigger(DSGroup group, uint id){
+    function trigger(ValidatorGroup group, uint id){
         group.trigger(id);
     }
 
@@ -29,7 +29,7 @@ contract Validator {
 
 contract ProjectTest is DSTest {
 
-    DSGroup group;
+    ValidatorGroup group;
     DSToken token; 
     ProjectFactory projectFactory;
     Validator validator1;
@@ -47,7 +47,7 @@ contract ProjectTest is DSTest {
         validators[0] = validator1;
         validators[1] = validator2;
 
-        group = new DSGroup(validators, 2, 30);
+        group = new ValidatorGroup(validators, 2, 30);
 
         token = new DSToken("TST");
         projectFactory = new ProjectFactory(token);
@@ -64,7 +64,7 @@ contract ProjectTest is DSTest {
         assertTrue(true);
     }
 
-    function test_test_confirm() public {
+    function test_confirm() public {
         bytes memory calldata = new bytes(4 + 32);
         bytes4 sig = bytes4(sha3("newProject()"));
 
